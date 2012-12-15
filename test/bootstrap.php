@@ -1,4 +1,4 @@
 <?php
 
-require_once dirname(__FILE__).'/../src/sys/autoload.php';
+require_once dirname(__FILE__).'/../src/Sys/Autoload.php';
 \Sys\Autoload::register();
