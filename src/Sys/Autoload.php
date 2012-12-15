@@ -4,6 +4,9 @@ namespace Sys;
 
 class Autoload
 {
+    /**
+     * @codeCoverageIgnore
+     */
     static public function register()
     {
         ini_set('unserialize_callback_func', 'spl_autoload_call');

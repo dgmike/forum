@@ -2,3 +2,4 @@
 *.bk
 *.bak
 src/.htaccess
+report/*
