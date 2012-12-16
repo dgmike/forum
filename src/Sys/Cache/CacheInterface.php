@@ -4,7 +4,7 @@ namespace Sys\Cache;
 
 interface CacheInterface
 {
-    public function init();
+    public function init(array $args);
 
     public function get($key);
 

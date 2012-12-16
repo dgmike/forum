@@ -7,12 +7,14 @@ class Cache
     public function __construct(Cache\CacheInterface $instance)
     {
         $this->instance = $instance;
-        $this->instance->init();
+        $args = func_get_args();
+        array_shift($args);
+        $this->instance->init($args);
     }
 
     public function set($key, $value, $expire = 0)
     {
-        $this->instance->set($key, $value, $expire);
+        return $this->instance->set($key, $value, $expire);
     }
 
     public function get($key)
