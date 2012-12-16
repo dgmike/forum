@@ -4,8 +4,12 @@ namespace Sys;
 
 class Cache
 {
+    static $instance = null;
+    const MINUTE = 60;
+
     public function __construct(Cache\CacheInterface $instance)
     {
+        self::$instance =& $this;
         $this->instance = $instance;
         $args = func_get_args();
         array_shift($args);
