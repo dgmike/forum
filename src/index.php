@@ -22,6 +22,10 @@ class Bootstrap
             header('404 Not Found');
             die('Not Found');
         } else {
+            $ambiance = !getEnv('AMBIANCE') ? 'development' : getEnv('AMBIANCE');
+            \Sys\Config::setFile(dirname(__FILE__).'/App/Config/Config.ini');
+            \Sys\Config::setAmbiance($ambiance);
+
             if (!is_dir(sys_get_temp_dir() . '/forum')) {
                 mkdir(sys_get_temp_dir() . '/forum');
             }
