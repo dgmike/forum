@@ -3,3 +3,4 @@
 *.bak
 src/.htaccess
 report/*
+src/App/Config/Config.ini
