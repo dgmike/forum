@@ -1,0 +1,7 @@
+SetEnv AMBIANCE development
+
+RewriteEngine On
+
+RewriteBase /
+RewriteCond $1 !^static
+RewriteRule (.*) index.php
