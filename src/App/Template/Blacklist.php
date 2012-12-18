@@ -21,6 +21,10 @@
 
 <hr />
 
+<a href="/blacklist/regenerate">Compilar registros</a>
+
+<hr />
+
 
 <div style="width: 500px;float:left;">
     <h2>Blacklist</h2>
@@ -42,7 +46,7 @@
 </div>
 <div style="width: 500px;float:left;">
     <h2>Micro Replacer</h2>
-    <form action="/blacklist/remove" method="post">
+    <form action="/blacklist" method="post">
         <input type="text" name="letter_in" placeholder="Letra de entrada" maxlength="1"  autocomplete="off" />
         <input type="text" name="letter_out" placeholder="Letra de substituição" maxlength="1"  autocomplete="off" />
         <button type="submit">adicionar</button>

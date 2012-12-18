@@ -19,7 +19,7 @@ class Blacklist extends PDO
 
     public function getWords()
     {
-        return $this->query('SELECT word FROM blacklist');
+        return $this->query('SELECT word FROM blacklist ORDER BY word');
     }
 
     public function addWord($word)
@@ -28,9 +28,15 @@ class Blacklist extends PDO
         $stmt->execute(array($word));
     }
 
+    public function removeWord($word)
+    {
+        $stmt = $this->prepare('DELETE FROM blacklist WHERE word = ?');
+        $stmt->execute(array($word));
+    }
+
     public function getLetters()
     {
-        return $this->query('SELECT letter_in, letter_out from blacklist_letter_replacer');
+        return $this->query('SELECT letter_in, letter_out from blacklist_letter_replacer ORDER BY letter_out');
     }
 
     public function addLetters($letter_in, $letter_out)
@@ -39,4 +45,9 @@ class Blacklist extends PDO
         $stmt->execute(array($letter_in, $letter_out));
     }
 
+    public function removeLetters($letter_in, $letter_out)
+    {
+        $stmt = $this->prepare('DELETE FROM blacklist_letter_replacer WHERE letter_in = ? AND letter_out = ?');
+        $stmt->execute(array($letter_in, $letter_out));
+    }
 }
