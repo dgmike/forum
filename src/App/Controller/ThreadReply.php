@@ -59,6 +59,8 @@ class ThreadReply
         }
         $answer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $model->answer($reply_to->id_message, $answer);
+        $cacheKey = 'thead:' . $data->thread_id . ':' . $data->previous_page;
+        \Sys\Cache::$instance->delete($cacheKey);
         if ($_SERVER['HTTP_X_REQUESTED_WITH']) {
             header('Content-type: text/plain');
             echo 'Mensagem enviada';

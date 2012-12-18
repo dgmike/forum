@@ -71,8 +71,7 @@ class Message extends PDO
              VALUES
              (?, ?, ?, ?, ?, ?, ?)'
         );
-        // @TODO put a word filter
-        $normalized_message = $message;
+        $normalized_message = \App\Model\Filter::replace($message);
         $stmt->execute(
             array(
                 0, 0, 0, "$next_id.",
@@ -164,8 +163,7 @@ class Message extends PDO
         if (!$parent) {
             return false;
         }
-        // @TODO make a filter
-        $normalized_message = $message;
+        $normalized_message = \App\Model\Filter::replace($message);
         $data = array(
             (int) ($parent->top_parent_id ? $parent->top_parent_id : $parent_id),
             (int) $parent->id_message,

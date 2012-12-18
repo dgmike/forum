@@ -31,9 +31,9 @@ class BlacklistRegenerate
                 $in = '(' . implode('|', $in) . ')';
                 $word = str_replace($out, $in, $word);
             }
-            $lines[] = '        $sentense = preg_replace_callback(\'/\b' 
+            $lines[] = '        $sentense = preg_replace_callback(\'/' 
                      . $word 
-                     . '\b/i\', create_function(\'$matches\', \'return str_repeat("x", strlen($matches[0]));\'), $sentense);';
+                     . '/i\', create_function(\'$matches\', \'return str_repeat("x", strlen($matches[0]));\'), $sentense);';
         }
         $lines[] = '        return $sentense;';
         $lines[] = '    }';
