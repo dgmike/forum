@@ -4,3 +4,4 @@
 src/.htaccess
 report/*
 src/App/Config/Config.ini
+src/App/Model/Filter.php
