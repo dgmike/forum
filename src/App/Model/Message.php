@@ -57,12 +57,12 @@ class Message extends PDO
     {
         $next_id = $this->query(
             sprintf(
-                'SELECT Auto_increment AS i
-                 FROM information_schema.tables 
-                 WHERE table_schema = %s
-                   AND table_name = %s',
-                PDO::quote(\Sys\Config::get('db_dbname')),
-                PDO::quote('message')
+                'SELECT COUNT(id_message) + 1 as i
+                 FROM message
+                 WHERE parent_id = %d
+                   AND status = %s',
+                0,
+                PDO::quote(self::STATUS_PUBLISHED)
             )
         )->fetchObject()->i;
         $stmt = $this->prepare(
