@@ -88,7 +88,7 @@ class Test_App_Model_MessageTest extends PHPUnit_Framework_TestCase
     {
         $result = $this->obj->thread(2, 2, 2);
         $this->assertEquals(2, $result->rowCount(), '-> must call only 2');
-        $this->assertEquals(6, $result->fetchObject()->id_message, '-> must start on second row');
+        $this->assertEquals(5, $result->fetchObject()->id_message, '-> must start on second row');
     }
 
     public function testThread3()
@@ -109,7 +109,7 @@ class Test_App_Model_MessageTest extends PHPUnit_Framework_TestCase
             'top_parent_id'    => '2',
             'parent_id'        => '2',
             'depth'            => '1',
-            'slug'             => '2.10.',
+            'slug'             => '2.3.',
             'original_message' => 'Boa, vou lá',
             'message'          => 'Boa, vou lá',
             'status'           => 'published', 
@@ -130,7 +130,7 @@ class Test_App_Model_MessageTest extends PHPUnit_Framework_TestCase
             'top_parent_id'    => '2',
             'parent_id'        => '6',
             'depth'            => '3',
-            'slug'             => '2.3.6.10.',
+            'slug'             => '2.3.2.1.',
             'original_message' => 'Boa, vou lá',
             'message'          => 'Boa, vou lá',
             'status'           => 'published', 
