@@ -16,12 +16,10 @@ class ThreadReply
         $cache = \Sys\Cache::$instance;
         $cacheKey = 'thead:' . $data->thread_id
                   . ':' . $data->previous_page . ':' . $data->reply_to;
-        /*
         if ($cacheOutput = $cache->get($cacheKey)) {
             echo $cacheOutput;
             return;
         }
-        */
         $model = new Message;
         $reply_to = $model->getMessage($data->reply_to);
         if (   !$reply_to 

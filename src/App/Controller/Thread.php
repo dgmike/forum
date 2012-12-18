@@ -17,12 +17,10 @@ class Thread
             $page = 1;
         }
         $cacheKey = 'thead:' . $thread . ':' . $page;
-        /*
         if ($cacheOutput = $cache->get($cacheKey)) {
             echo $cacheOutput;
             return;
         }
-        */
         $model = new Message;
         $total = $model->totalInthread($thread, true);
         if (!$total || ($page != 1 && ($page-1) * self::PER_PAGE > $total)) {
