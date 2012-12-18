@@ -38,9 +38,14 @@ class Router
             }
         }
         array_shift($matches);
-        call_user_func_array(
-            array($this->controller, $method), 
-            $matches
-        );
+        if (method_exists($this->controller, $method)) {
+            call_user_func_array(
+                array($this->controller, $method), 
+                $matches
+            );
+        } else {
+            header('404 Not Found');
+            die('Not Found');
+        }
     }
 }
