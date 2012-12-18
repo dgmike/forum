@@ -43,7 +43,7 @@ class Message extends PDO
         $start = (int) $start;
         $limit = (int) $limit;
         $stmt = $this->prepare(
-            'SELECT id_message, message, date_creation
+            'SELECT id_message, message, date_creation, slug
              FROM message
              WHERE top_parent_id = ? AND status = ?
              ORDER BY id_message DESC
@@ -93,12 +93,32 @@ class Message extends PDO
         return $stmt->execute(array(self::STATUS_DELETED, (int) $id, 0));
     }
 
+    public function totalInthread($id_thread, $use_head = false)
+    {
+        $sql = sprintf(
+            'SELECT 
+                 COUNT(id_message) as i
+             FROM message
+             WHERE ( top_parent_id = ? %s)
+               AND status = ?',
+             ($use_head ? 'OR id_message = ' . (int) $id_thread : '')
+        );
+        $stmt = $this->prepare($sql);
+        $stmt->execute(
+            array(
+                (int) $id_thread, 
+                self::STATUS_PUBLISHED
+            )
+        );
+        return $stmt->fetchObject()->i;
+    }
+
     public function thread($id_thread, $start, $limit, $use_head = false)
     {
         $sql = sprintf(
             'SELECT 
                  id_message, top_parent_id, parent_id, depth, slug,
-                 original_message, message, status
+                 original_message, message, status, date_creation
              FROM message
              WHERE ( top_parent_id = ? %s)
                AND status = ?
@@ -107,9 +127,7 @@ class Message extends PDO
              ($use_head ? 'OR id_message = ' . (int) $id_thread : ''),
              (int) $start, (int) $limit
         );
-        $stmt = $this->prepare(
-            $sql
-        );
+        $stmt = $this->prepare($sql);
         $stmt->execute(
             array(
                 (int) $id_thread, 
@@ -134,12 +152,12 @@ class Message extends PDO
     {
         $next_id = $this->query(
             sprintf(
-                'SELECT Auto_increment AS i
-                 FROM information_schema.tables 
-                 WHERE table_schema = %s
-                   AND table_name = %s',
-                PDO::quote(\Sys\Config::get('db_dbname')),
-                PDO::quote('message')
+                'SELECT COUNT(id_message) + 1 as i
+                 FROM message 
+                 WHERE parent_id = %d
+                   AND status = %s',
+                $parent_id,
+                PDO::quote(self::STATUS_PUBLISHED)
             )
         )->fetchObject()->i;
         $parent = $this->getMessage($parent_id);

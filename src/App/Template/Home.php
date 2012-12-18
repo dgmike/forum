@@ -25,9 +25,10 @@
 
 <hr />
 
-<ul>
+<ul style="list-style:none">
 <?php foreach ($threads as $thread): ?>
     <li>
+        <strong><?php echo $thread['slug'] ?></strong>
         <a href="/thread/<?php echo $thread['id_message'] ?>"
         ><?php echo $thread['message'] ?></a>
         &ndash;
