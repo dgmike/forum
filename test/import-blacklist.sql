@@ -5,6 +5,7 @@ create table if not exists blacklist(
 
 drop table if exists blacklist_letter_replacer;
 create table if not exists blacklist_letter_replacer(
-    word_in varchar(3), word_out varchar(3),
-    index in_out (word_in, word_out)
+    letter_in varchar(3),
+    letter_out varchar(3),
+    index in_out (letter_in, letter_out)
 ) engine=innodb;
