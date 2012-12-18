@@ -15,12 +15,10 @@ class Home
             $page = 1;
         }
         $cacheKey = 'home:' . $page;
-        /*
         if ($cacheOutput = $cache->get($cacheKey)) {
             echo $cacheOutput;
             return;
         }
-        */
         $model = new \App\Model\Message;
         $total = $model->totalThreads();
         if ($page != 1 && ($page-1) * self::PER_PAGE > $total) {
