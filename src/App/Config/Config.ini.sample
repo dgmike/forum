@@ -1,14 +1,17 @@
 [development]
-db_dns=mysql:host=localhost;dbname=forum_development
+db_dns="mysql:host=localhost;dbname=forum_development"
+db_dbname="forum_development"
 db_user=forum
 db_pass=forum
 
 [test]
-db_dns=mysql:host=localhost;dbname=forum_test
+db_dns="mysql:host=localhost;dbname=forum_test"
+db_dbname="forum_test"
 db_user=forum
 db_pass=forum
 
 [production]
-db_dns=mysql:host=localhost;dbname=forum
+db_dns="mysql:host=localhost;dbname=forum"
+db_dbname="forum"
 db_user=forum
 db_pass=XXXXXXXXXX
