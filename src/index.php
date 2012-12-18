@@ -18,7 +18,7 @@ class Bootstrap
         $router->setRoutes(include dirname(__FILE__) . '/App/Config/Routes.php');
         $uri = $_SERVER['REQUEST_URI'];
         $controller = $router->getController($uri);
-        if (!$controller) {
+        if (!$controller || !class_exists($controller)) {
             header('404 Not Found');
             die('Not Found');
         } else {
