@@ -12,6 +12,7 @@
     </head>
     <body>
 
+<a href="/blacklist" style="float:right">blacklist</a>
 <h1>
     <?php if ($page > 1): ?><a href="/"><?php endif ?>
         Fórum

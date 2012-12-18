@@ -11,6 +11,7 @@
     </head>
     <body>
 
+<a href="/blacklist" style="float:right">blacklist</a>
 <h1>
     <a href="/">Fórum</a>
     <em style="font:.6em/1.2em sans-serif;color:#555;display:block;"><?php echo $header->message ?></em>
