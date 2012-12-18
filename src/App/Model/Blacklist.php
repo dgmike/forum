@@ -39,6 +39,17 @@ class Blacklist extends PDO
         return $this->query('SELECT letter_in, letter_out from blacklist_letter_replacer ORDER BY letter_out');
     }
 
+    public function getLetterForRegex()
+    {
+        $stmt = $this->query(
+            'SELECT GROUP_CONCAT(letter_in SEPARATOR "\n") as letter_in, letter_out
+             FROM blacklist_letter_replacer
+             GROUP BY letter_out'
+        );
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt;
+    }
+
     public function addLetters($letter_in, $letter_out)
     {
         $stmt = $this->prepare('INSERT INTO blacklist_letter_replacer (letter_in, letter_out) VALUES (?, ?)');

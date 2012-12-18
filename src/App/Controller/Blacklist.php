@@ -5,7 +5,7 @@ use App\Model;
 
 class Blacklist
 {
-    public function get()
+    public function get($regenerated = false)
     {
         $model = new Model\Blacklist;
         $words = $model->getWords();

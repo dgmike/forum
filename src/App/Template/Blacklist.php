@@ -6,10 +6,7 @@
         <title>
             Fórum
             -
-            <?php echo $header->message ?>
-            <?php if ($page > 1): ?>
-            - Página <?php echo $page ?>
-            <?php endif ?>
+            Black List
         </title>
     </head>
     <body>
@@ -21,7 +18,12 @@
 
 <hr />
 
-<a href="/blacklist/regenerate">Compilar registros</a>
+<p>
+    <a href="/blacklist/regenerate">Compilar registros</a>
+    <?php if ($regenerated): ?>
+    &bullet; Gerado com sucesso!
+    <?php endif ?>
+</p>
 
 <hr />
 

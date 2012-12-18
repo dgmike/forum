@@ -5,7 +5,7 @@ return array(
     '/new-thread/?'                     => 'App\Controller\Newthread',
     '/thread(/\d+)?(/\d+)?/?'           => 'App\Controller\Thread',
     '/thread/(\d+)/(\d+)/reply/(\d+)/?' => 'App\Controller\ThreadReply',
-    '/blacklist/?$'                     => 'App\Controller\Blacklist',
+    '/blacklist(/regenerated)?/?$'      => 'App\Controller\Blacklist',
     '/blacklist/remove/?'               => 'App\Controller\BlacklistRemove',
-    '/blacklist/regenerate'             => 'App\Controller\BlacklistRegenerate',
+    '/blacklist/regenerate/?'           => 'App\Controller\BlacklistRegenerate',
 );
