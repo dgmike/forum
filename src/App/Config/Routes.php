@@ -2,5 +2,6 @@
 
 return array(
     '(/\d+)?/?'         => 'App\Controller\Home',
-    '/thread(/\d+)?/?' => 'App\Controller\Thread',
+    '/new-thread/?'     => 'App\Controller\Newthread',
+    '/thread(/\d+)?/?'  => 'App\Controller\Thread',
 );
