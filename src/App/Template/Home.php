@@ -17,7 +17,16 @@
     <button type="submit">Enviar</button>
 </form>
 
-<?php echo $page ?>
+<ul>
+<?php foreach ($threads as $thread): ?>
+    <li>
+        <a href="#">
+            <?php echo $thread->message ?>
+        </a>
+    </li>
+<?php endforeach ?>
+</ul>
+
 
 
     </body>
