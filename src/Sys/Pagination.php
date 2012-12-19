@@ -24,7 +24,7 @@ class Pagination
 	var $querystring;
 	var $base_url = '/';
 
-	function Pagination()
+	function __construct()
 	{
 		$this->items_per_page = $this->default_ipp;
 	}
