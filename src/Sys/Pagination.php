@@ -54,7 +54,10 @@ class Pagination
                 $i, $i
             );
         }
-        return "<a class=\"paginate\" title=\"Ir para a página $i\" href=\"{$this->base_url}/$i\">$i</a> ";
+        return sprintf(
+            '<a class="paginate" title="Ir para a página %d" href="%s/%d">%d</a> ',
+            $i, $this->base_url, $i, $i
+        );
     }
 
     function paginate()
