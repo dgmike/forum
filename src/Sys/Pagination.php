@@ -49,9 +49,15 @@ class Pagination
     function _mkLinkPage($i)
     {
         if ($i == $this->current_page) {
-            return "<a title=\"Ir para a página $i\" class=\"current\" href=\"#\">$i</a> ";
+            return sprintf(
+                '<a title="Ir para a página %d" class="current" href="#">%d</a> ',
+                $i, $i
+            );
         }
-        return "<a class=\"paginate\" title=\"Ir para a página $i\" href=\"{$this->base_url}/$i\">$i</a> ";
+        return sprintf(
+            '<a class="paginate" title="Ir para a página %d" href="%s/%d">%d</a> ',
+            $i, $this->base_url, $i, $i
+        );
     }
 
     function paginate()
@@ -91,8 +97,8 @@ class Pagination
         } else {
             for ($i=1;$i<=$this->num_pages;$i++) {
                 $this->return .= ($i == $this->current_page)
-                               ? "<a class=\"current\" href=\"#\">$i</a> "
-                               : "<a class=\"paginate\" href=\"{$this->base_url}/$i\">$i</a> ";
+                               ? "<a class="current" href="#">$i</a> "
+                               : "<a class="paginate" href="{$this->base_url}/$i">$i</a> ";
             }
         }
         if ($this->current_page <= 0) {
