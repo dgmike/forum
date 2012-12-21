@@ -33,6 +33,18 @@ class Pagination
         return '<span class="inactive" href="#">&laquo; Anterior</span> ';
     }
 
+    function _mkNext()
+    {
+        if (  ($this->current_page < $this->num_pages 
+               && $this->items_total >= 10)
+            && $this->current_page > 0
+        ) {
+            return "<a class=\"paginate\" href=\"{$this->base_url}/$next_page\">Próxima &raquo;</a>\n";
+        }
+        return "<span class=\"inactive\" href=\"#\">&raquo; Próxima</span>\n";
+
+    }
+
     function paginate()
     {
         if (!is_numeric($this->items_per_page) || $this->items_per_page <= 0) {
@@ -68,12 +80,7 @@ class Pagination
                     $this->return .= " ... ";
                 }
             }
-            $this->return .= (
-                   ($this->current_page < $this->num_pages && $this->items_total >= 10)
-                && $this->current_page > 0
-            )
-            ? "<a class=\"paginate\" href=\"{$this->base_url}/$next_page\">Próxima &raquo;</a>\n"
-            : "<span class=\"inactive\" href=\"#\">&raquo; Próxima</span>\n";
+            $this->return .= $this->_mkNext();
         } else {
             for ($i=1;$i<=$this->num_pages;$i++) {
                 $this->return .= ($i == $this->current_page)
