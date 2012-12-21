@@ -43,7 +43,15 @@ class Pagination
                 $this->base_url, $next_page
             );
         }
-        return '<span class=\"inactive\" href=\"#\">&raquo; Próxima</span>\n';
+        return '<span class="inactive" href="#">&raquo; Próxima</span> ';
+    }
+
+    function _mkLinkPage($i)
+    {
+        if ($i == $this->current_page) {
+            return "<a title=\"Ir para a página $i\" class=\"current\" href=\"#\">$i</a> ";
+        }
+        return "<a class=\"paginate\" title=\"Ir para a página $i\" href=\"{$this->base_url}/$i\">$i</a> ";
     }
 
     function paginate()
@@ -73,9 +81,7 @@ class Pagination
                 }
                 // loop through all pages. if first, last, or in range, display
                 if ($i==1 || $i==$this->num_pages || in_array($i,$this->range)) {
-                    $this->return .= ($i == $this->current_page)
-                                   ? "<a title=\"Ir para a página $i\" class=\"current\" href=\"#\">$i</a> "
-                                   : "<a class=\"paginate\" title=\"Ir para a página $i\" href=\"{$this->base_url}/$i\">$i</a> ";
+                    $this->return .= $this->_mkLinkPage($i);
                 }
                 if ($this->range[$this->mid_range-1] < $this->num_pages-1 && $i == $this->range[$this->mid_range-1]) { 
                     $this->return .= " ... ";
