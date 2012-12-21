@@ -73,9 +73,6 @@ class Pagination
                                : "<a class=\"paginate\" href=\"{$this->base_url}/$i\">$i</a> ";
             }
         }
-        $this->low = ($this->current_page <= 0)
-                   ? 0
-                   : ($this->current_page-1) * $this->items_per_page;
         if ($this->current_page <= 0) {
             $this->items_per_page = 0;
         }
