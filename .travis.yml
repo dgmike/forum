@@ -1,9 +1,11 @@
 language: php
 php:
   - 5.3
+services:
+  - mysql
 before_script:
   - mysql -e 'DROP DATABASE IF EXISTS forum_test'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS forum_test'
-  - mysql -e 'GRANT ALL PRIVILEGES ON forum_test.* TO forum IDENTIFIED BY "forum"'
-  - cp ./src/App/Config/Config.ini.sample ./src/App/Config/Config.ini
+  - sed -e "s/db_user=forum/db_user=\"root\"/" -e "s/db_pass=forum/db_pass=\"\"/" ./src/App/Config/Config.ini.sample > ./src/App/Config/Config.ini
+
 script: phpunit .
