@@ -104,7 +104,7 @@ class Pagination
         }
     }
 
-    public function display_pages()
+    public function displayPages()
     {
         return $this->return;
     }

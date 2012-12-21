@@ -35,7 +35,7 @@
 </ul>
 
 <?php if ($pagination): ?>
-    <p>[ <?php echo $pagination->display_pages() ?> ]</p>
+    <p>[ <?php echo $pagination->displayPages() ?> ]</p>
 <?php endif ?>
 
 
