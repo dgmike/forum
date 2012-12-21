@@ -36,11 +36,12 @@ class Pagination
                 ) {
 		    $this->items_per_page = $this->default_ipp;
 		}
-		$this->num_pages = ceil($this->items_total/$this->items_per_page);
+		$this->num_pages = ceil(
+                    $this->items_total / $this->items_per_page
+                );
 		$prev_page = $this->current_page-1;
 		$next_page = $this->current_page+1;
-
-		if($this->num_pages > 10) {
+		if ($this->num_pages > 10) {
 			$this->return = ($this->current_page > 1 And $this->items_total >= 10)
 			              ? "<a class=\"paginate\" href=\"{$this->base_url}/$prev_page\">&laquo; Anterior</a> "
 			              : "<span class=\"inactive\" href=\"#\">&laquo; Anterior</span> ";
