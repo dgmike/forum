@@ -18,7 +18,6 @@ class Pagination
     var $num_pages;
     var $mid_range      = 7;
     var $low;
-    var $limit;
     var $return;
     var $default_ipp    = 10;
     var $querystring;
@@ -80,7 +79,6 @@ class Pagination
         if ($this->current_page <= 0) {
             $this->items_per_page = 0;
         }
-        $this->limit = " LIMIT $this->low,$this->items_per_page";
     }
 
     function display_pages()
