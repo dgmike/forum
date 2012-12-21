@@ -35,14 +35,15 @@ class Pagination
 
     function _mkNext()
     {
-        if (  ($this->current_page < $this->num_pages 
-               && $this->items_total >= 10)
+        if (($this->current_page < $this->num_pages && $this->items_total >= 10)
             && $this->current_page > 0
         ) {
-            return "<a class=\"paginate\" href=\"{$this->base_url}/$next_page\">Próxima &raquo;</a>\n";
+            return sprintf(
+                '<a class="paginate" href="%s/%s">Próxima &raquo;</a> ',
+                $this->base_url, $next_page
+            );
         }
-        return "<span class=\"inactive\" href=\"#\">&raquo; Próxima</span>\n";
-
+        return '<span class=\"inactive\" href=\"#\">&raquo; Próxima</span>\n';
     }
 
     function paginate()
