@@ -22,7 +22,7 @@ class Pagination
     var $querystring;
     var $base_url       = '/';
 
-    function _mkPrevious()
+    function _mkPrevious($prev_page)
     {
         if ($this->current_page > 1 && $this->items_total >= 10) {
             return sprintf(
@@ -33,7 +33,7 @@ class Pagination
         return '<span class="inactive" href="#">&laquo; Anterior</span> ';
     }
 
-    function _mkNext()
+    function _mkNext($next_page)
     {
         if (($this->current_page < $this->num_pages && $this->items_total >= 10)
             && $this->current_page > 0
@@ -55,7 +55,7 @@ class Pagination
         $prev_page = $this->current_page-1;
         $next_page = $this->current_page+1;
         if ($this->num_pages > 10) {
-            $this->return = $this->_mkPrevious();
+            $this->return = $this->_mkPrevious($prev_page);
             $this->start_range = $this->current_page - floor($this->mid_range/2);
             $this->end_range = $this->current_page + floor($this->mid_range/2);
             if ($this->start_range <= 0) {
@@ -81,7 +81,7 @@ class Pagination
                     $this->return .= " ... ";
                 }
             }
-            $this->return .= $this->_mkNext();
+            $this->return .= $this->_mkNext($next_page);
         } else {
             for ($i=1;$i<=$this->num_pages;$i++) {
                 $this->return .= ($i == $this->current_page)
