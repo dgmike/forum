@@ -25,7 +25,10 @@ class Pagination
     function _mkPrevious()
     {
         if ($this->current_page > 1 && $this->items_total >= 10) {
-            return "<a class=\"paginate\" href=\"{$this->base_url}/$prev_page\">&laquo; Anterior</a> ";
+            return sprintf(
+                '<a class="paginate" href="%s/%s">&laquo; Anterior</a> ',
+                $this->base_url, $prev_page
+            );
         }
         return "<span class=\"inactive\" href=\"#\">&laquo; Anterior</span> ";
     }
