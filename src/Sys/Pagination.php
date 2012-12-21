@@ -31,7 +31,9 @@ class Pagination
 
 	function paginate()
 	{
-		if(!is_numeric($this->items_per_page) OR $this->items_per_page <= 0) {
+		if (  !is_numeric($this->items_per_page) 
+                   || $this->items_per_page <= 0
+                ) {
 		    $this->items_per_page = $this->default_ipp;
 		}
 		$this->num_pages = ceil($this->items_total/$this->items_per_page);
