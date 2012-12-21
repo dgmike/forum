@@ -30,7 +30,7 @@ class Pagination
                 $this->base_url, $prev_page
             );
         }
-        return "<span class=\"inactive\" href=\"#\">&laquo; Anterior</span> ";
+        return '<span class="inactive" href="#">&laquo; Anterior</span> ';
     }
 
     function paginate()
