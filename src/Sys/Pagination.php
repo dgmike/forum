@@ -12,17 +12,17 @@ namespace Sys;
  */
 class Pagination
 {
-    var $items_per_page = 10;
-    var $items_total;
-    var $current_page   = 1;
-    var $num_pages;
-    var $mid_range      = 7;
-    var $return;
-    var $default_ipp    = 10;
-    var $querystring;
-    var $base_url       = '/';
+    public $items_per_page = 10;
+    public $items_total;
+    public $current_page   = 1;
+    public $num_pages;
+    public $mid_range      = 7;
+    public $return;
+    public $default_ipp    = 10;
+    public $querystring;
+    public $base_url       = '/';
 
-    function _mkPrevious($prev_page)
+    private function _mkPrevious($prev_page)
     {
         if ($this->current_page > 1 && $this->items_total >= 10) {
             return sprintf(
@@ -33,7 +33,7 @@ class Pagination
         return '<span class="inactive" href="#">&laquo; Anterior</span> ';
     }
 
-    function _mkNext($next_page)
+    private function _mkNext($next_page)
     {
         if (($this->current_page < $this->num_pages && $this->items_total >= 10)
             && $this->current_page > 0
@@ -46,7 +46,7 @@ class Pagination
         return '<span class="inactive" href="#">&raquo; Próxima</span> ';
     }
 
-    function _mkLinkPage($i)
+    private function _mkLinkPage($i)
     {
         if ($i == $this->current_page) {
             return sprintf(
@@ -60,7 +60,7 @@ class Pagination
         );
     }
 
-    function paginate()
+    public function paginate()
     {
         if (!is_numeric($this->items_per_page) || $this->items_per_page <= 0) {
             $this->items_per_page = $this->default_ipp;
@@ -77,7 +77,7 @@ class Pagination
                 $this->start_range = 1;
             }
             if ($this->end_range > $this->num_pages) {
-                $this->start_range -= $this->end_range-$this->num_pages;
+                $this->start_range -= $this->end_range - $this->num_pages;
                 $this->end_range = $this->num_pages;
             }
             $this->range = range($this->start_range,$this->end_range);
@@ -96,7 +96,7 @@ class Pagination
             $this->return .= $this->_mkNext($next_page);
         } else {
             for ($i=1;$i<=$this->num_pages;$i++) {
-                $this->return .= $this->_mkLinkPage($i);
+                $this->return .= $this->_mkLinkPage($i++);
             }
         }
         if ($this->current_page <= 0) {
@@ -104,7 +104,7 @@ class Pagination
         }
     }
 
-    function display_pages()
+    public function display_pages()
     {
         return $this->return;
     }
