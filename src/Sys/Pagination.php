@@ -12,7 +12,7 @@ namespace Sys;
  */
 class Pagination
 {
-    var $items_per_page;
+    var $items_per_page = 10;
     var $items_total;
     var $current_page = 1;
     var $num_pages;
@@ -23,11 +23,6 @@ class Pagination
     var $default_ipp = 10;
     var $querystring;
     var $base_url = '/';
-
-    function __construct()
-    {
-        $this->items_per_page = $this->default_ipp;
-    }
 
     function paginate()
     {
