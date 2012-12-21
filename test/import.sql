@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_message`),
   KEY `parent_id` (`parent_id`),
-  KEY `top_parent_id` (`parent_id`)
+  KEY `top_parent_id` (`top_parent_id`)
 ) ENGINE=InnoDB;
 
 INSERT INTO `message` (id_message, top_parent_id, parent_id, depth, slug, original_message, message, status)
