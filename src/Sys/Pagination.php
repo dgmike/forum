@@ -22,6 +22,13 @@ class Pagination
     var $querystring;
     var $base_url       = '/';
 
+    function _mkPrevious()
+    {
+        return = ($this->current_page > 1 && $this->items_total >= 10)
+               ? "<a class=\"paginate\" href=\"{$this->base_url}/$prev_page\">&laquo; Anterior</a> "
+               : "<span class=\"inactive\" href=\"#\">&laquo; Anterior</span> ";
+    }
+
     function paginate()
     {
         if (!is_numeric($this->items_per_page) || $this->items_per_page <= 0) {
@@ -31,9 +38,7 @@ class Pagination
         $prev_page = $this->current_page-1;
         $next_page = $this->current_page+1;
         if ($this->num_pages > 10) {
-            $this->return = ($this->current_page > 1 && $this->items_total >= 10)
-                          ? "<a class=\"paginate\" href=\"{$this->base_url}/$prev_page\">&laquo; Anterior</a> "
-                          : "<span class=\"inactive\" href=\"#\">&laquo; Anterior</span> ";
+            $this->return = $this->_mkPrevious();
             $this->start_range = $this->current_page - floor($this->mid_range/2);
             $this->end_range = $this->current_page + floor($this->mid_range/2);
             if ($this->start_range <= 0) {
