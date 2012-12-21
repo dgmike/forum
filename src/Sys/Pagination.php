@@ -17,7 +17,6 @@ class Pagination
     var $current_page   = 1;
     var $num_pages;
     var $mid_range      = 7;
-    var $low;
     var $return;
     var $default_ipp    = 10;
     var $querystring;
