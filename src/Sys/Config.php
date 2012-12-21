@@ -8,17 +8,17 @@ class Config
     static public $ambiance;
     static public $config;
 
-    public function setFile($file)
+    static public function setFile($file)
     {
         self::$file = $file;
     }
 
-    public function setAmbiance($ambiance)
+    static public function setAmbiance($ambiance)
     {
         self::$ambiance = $ambiance;
     }
 
-    public function get($key)
+    static public function get($key)
     {
         if (!self::$config) {
             self::parse();
@@ -32,7 +32,7 @@ class Config
         return self::$config[self::$ambiance][$key];
     }
 
-    public function parse()
+    static public function parse()
     {
         self::$config = parse_ini_file(self::$file, true);
     }
