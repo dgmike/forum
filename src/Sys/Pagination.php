@@ -14,15 +14,15 @@ class Pagination
 {
     var $items_per_page = 10;
     var $items_total;
-    var $current_page = 1;
+    var $current_page   = 1;
     var $num_pages;
-    var $mid_range = 7;
+    var $mid_range      = 7;
     var $low;
     var $limit;
     var $return;
-    var $default_ipp = 10;
+    var $default_ipp    = 10;
     var $querystring;
-    var $base_url = '/';
+    var $base_url       = '/';
 
     function paginate()
     {
