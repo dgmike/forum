@@ -45,11 +45,9 @@ class Pagination
 			$this->return = ($this->current_page > 1 And $this->items_total >= 10)
 			              ? "<a class=\"paginate\" href=\"{$this->base_url}/$prev_page\">&laquo; Anterior</a> "
 			              : "<span class=\"inactive\" href=\"#\">&laquo; Anterior</span> ";
-
 			$this->start_range = $this->current_page - floor($this->mid_range/2);
 			$this->end_range = $this->current_page + floor($this->mid_range/2);
-
-			if($this->start_range <= 0) {
+			if ($this->start_range <= 0) {
 				$this->end_range += abs($this->start_range)+1;
 				$this->start_range = 1;
 			}
