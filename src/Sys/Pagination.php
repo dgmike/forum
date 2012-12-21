@@ -49,7 +49,10 @@ class Pagination
     function _mkLinkPage($i)
     {
         if ($i == $this->current_page) {
-            return "<a title=\"Ir para a página $i\" class=\"current\" href=\"#\">$i</a> ";
+            return sprintf(
+                '<a title="Ir para a página %d" class="current" href="#">%d</a> '
+                $i, $i
+            );
         }
         return "<a class=\"paginate\" title=\"Ir para a página $i\" href=\"{$this->base_url}/$i\">$i</a> ";
     }
