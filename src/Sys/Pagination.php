@@ -80,16 +80,19 @@ class Pagination
                 $this->start_range -= $this->end_range - $this->num_pages;
                 $this->end_range = $this->num_pages;
             }
-            $this->range = range($this->start_range,$this->end_range);
+            $this->range = range($this->start_range, $this->end_range);
             for ($i=1;$i<=$this->num_pages;$i++) {
                 if ($this->range[0] > 2 && $i == $this->range[0]) {
                     $this->return .= " ... ";
                 }
-                // loop through all pages. if first, last, or in range, display
-                if ($i==1 || $i==$this->num_pages || in_array($i,$this->range)) {
+                if (   $i==1 || $i==$this->num_pages
+                    || in_array($i, $this->range)
+                ) {
                     $this->return .= $this->_mkLinkPage($i);
                 }
-                if ($this->range[$this->mid_range-1] < $this->num_pages-1 && $i == $this->range[$this->mid_range-1]) { 
+                if (   $this->range[$this->mid_range-1] < $this->num_pages-1
+                    && $i == $this->range[$this->mid_range-1]
+                ) { 
                     $this->return .= " ... ";
                 }
             }
