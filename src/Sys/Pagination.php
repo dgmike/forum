@@ -96,9 +96,7 @@ class Pagination
             $this->return .= $this->_mkNext($next_page);
         } else {
             for ($i=1;$i<=$this->num_pages;$i++) {
-                $this->return .= ($i == $this->current_page)
-                               ? "<a class=\"current\" href=\"#\">$i</a> "
-                               : "<a class=\"paginate\" href=\"{$this->base_url}/$i\">$i</a> ";
+                $this->return .= $this->_mkLinkPage($i);
             }
         }
         if ($this->current_page <= 0) {
