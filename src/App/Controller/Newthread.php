@@ -15,7 +15,11 @@ class Newthread
             die;
         }
         $model->newThread($message);
-        Cache::$instance->flush();
+        $total = $model->totalThreads();
+        $pages = ceil($total / Home::PER_PAGE);
+        for ($i=1; $i < $pages; $i++) {
+            Cache::$instance->delete('home:' . $i);
+        }
         header('Location: /');
         die;
     }
