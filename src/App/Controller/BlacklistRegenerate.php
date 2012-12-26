@@ -26,7 +26,7 @@ class BlacklistRegenerate
             foreach($replaces as $replacer) {
                 $out = strtolower($replacer['letter_out']);
                 $in = explode("\n", $replacer['letter_in']);
-                array_map('preg_quote', $in);
+                $in = array_map('preg_quote', $in);
                 $in[] = $out;
                 $in = '(' . implode('|', $in) . ')';
                 $word = str_replace($out, $in, $word);
