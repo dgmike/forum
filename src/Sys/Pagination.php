@@ -50,7 +50,7 @@ class Pagination
     {
         if ($i == $this->current_page) {
             return sprintf(
-                '<a title="Ir para a página %d" class="current" href="#">%d</a> '
+                '<a title="Ir para a página %d" class="current" href="#">%d</a> ',
                 $i, $i
             );
         }
