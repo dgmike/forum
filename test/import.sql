@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `message`;
-
 CREATE TABLE IF NOT EXISTS `message` (
   `id_message` int(11) NOT NULL AUTO_INCREMENT,
   `top_parent_id` int(11) NOT NULL DEFAULT '0',
@@ -13,6 +12,18 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id_message`),
   KEY `parent_id` (`parent_id`),
   KEY `top_parent_id` (`top_parent_id`)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS blacklist;
+CREATE TABLE IF NOT EXISTS blacklist(
+    word VARCHAR(50) PRIMARY KEY
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS blacklist_letter_replacer;
+CREATE TABLE IF NOT EXISTS blacklist_letter_replacer(
+    letter_in  VARCHAR(3),
+    letter_out VARCHAR(3),
+    UNIQUE INDEX in_out (letter_in, letter_out)
 ) ENGINE=InnoDB;
 
 INSERT INTO `message` (id_message, top_parent_id, parent_id, depth, slug, original_message, message, status)
