@@ -1,9 +1,10 @@
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `id_message` int(11) NOT NULL AUTO_INCREMENT,
-  `top_parent_id` int(11) NOT NULL DEFAULT '0',
-  `parent_id` int(11) NOT NULL DEFAULT '0',
-  `depth` int(11) NOT NULL DEFAULT '1',
+  `top_parent_id` int(11) NOT NULL DEFAULT 0,
+  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `depth` int(11) NOT NULL DEFAULT 1,
+  `order` int(11) NOT NULL DEFAULT 1,
   `slug` varchar(50) NOT NULL,
   `original_message` TEXT NOT NULL,
   `message` TEXT NOT NULL,
@@ -25,6 +26,8 @@ CREATE TABLE IF NOT EXISTS blacklist_letter_replacer(
     letter_out VARCHAR(3),
     UNIQUE INDEX in_out (letter_in, letter_out)
 ) ENGINE=InnoDB;
+
+-- INSERTING TEST ITENS
 
 INSERT INTO `message` (id_message, top_parent_id, parent_id, depth, slug, original_message, message, status)
 VALUES (1, 0, 0, 0, '1.', 'O que é jQuery?', 'O que é jQuery?', 'published');

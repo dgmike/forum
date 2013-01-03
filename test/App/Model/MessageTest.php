@@ -12,6 +12,13 @@ class Test_App_Model_MessageTest extends PHPUnit_Framework_TestCase
         foreach ($sql as $query) {
             $this->obj->exec($query);
         }
+        $sql  = file_get_contents(dirname(__FILE__) . '/../../procedure.sql');
+        $this->obj->beginTransaction();
+        $this->obj->exec('DELIMITER $$');
+        $this->obj->exec('DROP PROCEDURE IF EXISTS `treeItem`');
+        $this->obj->exec($sql);
+        $this->obj->exec('DELIMITER ;');
+        $this->obj->commit();
         unset($this->obj);
         $this->obj = new \App\Model\Message;
     }
@@ -113,6 +120,7 @@ class Test_App_Model_MessageTest extends PHPUnit_Framework_TestCase
             'original_message' => 'Boa, vou lá',
             'message'          => 'Boa, vou lá',
             'status'           => 'published', 
+            'order'            => '1',
         );
         unset($row['date_creation']);
         $this->assertEquals($data, $row);
@@ -134,6 +142,7 @@ class Test_App_Model_MessageTest extends PHPUnit_Framework_TestCase
             'original_message' => 'Boa, vou lá',
             'message'          => 'Boa, vou lá',
             'status'           => 'published', 
+            'order'            => '1',
         );
         unset($row['date_creation']);
         $this->assertEquals($data, $row);
